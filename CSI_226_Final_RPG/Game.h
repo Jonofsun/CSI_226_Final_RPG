@@ -12,7 +12,7 @@ class Game
 {
 public:
 	Game();
-	virtual ~Game();
+	virtual ~Game(); // you can call a virtual function for an object to overide and execute the derived class’s version of the method.
 
 	//Operators
 
