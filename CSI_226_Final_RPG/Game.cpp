@@ -77,7 +77,7 @@ void Game::createNewCharacter()
 	getline(std::cin, name);
 	/*std::cin.ignore();*/
 
-	characters.push_back(Character());
+	characters.push_back(Character()); // temporary object, or copy sent into the vector that hold the objects
 	activeCharacter = characters.size() - 1;
 	characters[activeCharacter].initialize(name);
 }

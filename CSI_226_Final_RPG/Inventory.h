@@ -1,5 +1,6 @@
 #pragma once
-
+#include"Weapon.h"
+#include"Armor.h"
 #include"Item.h"
 
 class Inventory
@@ -10,6 +11,9 @@ public:
 	
 	void addItem(const Item &item);
 	void removeItem(int index);
+	Inventory(const Inventory& obj);
+	inline int size()const { return this->numOfItems; }
+	Item& operator[](const int index);
 	inline void debugPrint() const
 	{
 		for (size_t i = 0; i < this->numOfItems; i++)
@@ -23,7 +27,7 @@ private:
 	int numOfItems;
 	Item **itemArr; // pointer array, ifficiant - easy to manage collection
 	void expand();
-	void initialize(const int from);
+	void initialize(const int from = 0);
 
 	
 

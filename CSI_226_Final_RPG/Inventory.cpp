@@ -2,9 +2,10 @@
 
 Inventory::Inventory() 
 {
-	this->cap = 10;
+	this->cap = 5;
 	this->numOfItems = 0;
 	this->itemArr = new Item*[cap];
+	this->initialize();
 }
 
 Inventory::~Inventory()
@@ -25,12 +26,9 @@ void Inventory::expand() // Expanding a pointer pointer ** array
 
 	for (size_t i = 0; i < this->numOfItems; i++)
 	{
-		tempArr[i] = new Item(*this->itemArr[i]); // copy old memory
+		tempArr[i] = this->itemArr[i]; // copy old memory
 	}
-	for (size_t i = 0; i < this->numOfItems; i++)
-	{
-		delete this->itemArr[i];
-	}
+	
 	delete[] this->itemArr; // delete old memory
 
 	this->itemArr = tempArr; // set the new item array
@@ -50,7 +48,7 @@ void Inventory::addItem(const Item& item)
 	{
 		expand();
 	}
-	itemArr[this->numOfItems++] = new Item(item);
+	itemArr[this->numOfItems++] = item.clone(); // i would need a check in here on what item was being added if i didnt use a pointer
 }
 void Inventory::removeItem(int index)
 {

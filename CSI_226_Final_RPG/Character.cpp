@@ -44,21 +44,21 @@ void Character::initialize(const std::string name)
 	this->exp = 0;
 	this->expNext =
 		expNext = static_cast<int> ((50 / 3) * ((pow(level, 3) -
-		6 * pow(level, 2)) + (17 * level) - 12)) + 100;
+		6 * pow(level, 2)) + (17 * level) - 12)) + 100; // Equation to bump up the exp needed to go to next level, casting to int is used here to keep the value from having decimal points.
 
-	this->strength = 5;
+	this->strength = 5; // as these atributes improve it will effect the below values
 	this->vitality = 5;
 	this->dexterity = 5;
 	this->intelligence = 5;
 
-	this->hp = 10;
-	this->hpMax = 10;
-	this->stamina = 10;
-	this->staminaMax = 10;
-	this->damageMin = 2;
-	this->damageMax = 4;
-	this->defence = 1;
-	this->luck = 1;
+	this->hpMax = (this->vitality * 2) + (this->strength/2);
+	this->hp = hpMax;
+	this->staminaMax = this->vitality + (this->strength/2) + (this->dexterity/3);
+	this->stamina = this->staminaMax;
+	this->damageMin = this->strength;
+	this->damageMax = this->strength + 2;
+	this->defence = this->dexterity + (this->intelligence/2);
+	this->luck = this->intelligence;
 
 	this->statPoints = 0;
 	this->skillPoint = 0;
