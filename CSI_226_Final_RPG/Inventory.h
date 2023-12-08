@@ -11,9 +11,9 @@ public:
 	
 	void addItem(const Item &item);
 	void removeItem(int index);
-	Inventory(const Inventory& obj);
-	inline int size()const { return this->numOfItems; }
-	Item& operator[](const int index);
+	Inventory(const Inventory& obj); // copy constructer, this item is created using another object
+	inline int size()const { return this->numOfItems; } // for looping purposeses
+	Item& operator[](const int index); // overload to reference item
 	inline void debugPrint() const
 	{
 		for (size_t i = 0; i < this->numOfItems; i++)
@@ -25,7 +25,7 @@ public:
 private:
 	int cap;
 	int numOfItems;
-	Item **itemArr; // pointer array, ifficiant - easy to manage collection
+	Item **itemArr; // pointer:pointer array, ifficiant - easy to manage collection
 	void expand();
 	void initialize(const int from = 0);
 

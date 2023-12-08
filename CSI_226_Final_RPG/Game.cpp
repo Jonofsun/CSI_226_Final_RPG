@@ -18,6 +18,8 @@ void Game::initGame()
 
 	//Load Save through json password '1234'
 	createNewCharacter();
+	/*Puzzle puzzle("Puzzles/puzzle1.txt");
+	std::cout << puzzle.getAsString() << "\n";*/
 	
 }
 void Game::mainMenu() 
@@ -44,6 +46,7 @@ void Game::mainMenu()
 		playing = false;
 		break;
 	case 1:
+		Travel();
 		break;
 	case 2:
 		break;
@@ -98,4 +101,11 @@ void Game::saveCharacter()
 void Game::loadCharacter()
 {
 
+}
+void Game::Travel() 
+{
+	this->characters[activeCharacter].travel();
+
+	Event ev;
+	ev.generateEvent(this->characters[activeCharacter]);
 }

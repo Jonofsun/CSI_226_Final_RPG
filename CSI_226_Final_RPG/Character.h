@@ -3,7 +3,7 @@
 #include<iomanip>
 #include<string>
 #include"Inventory.h"
-
+#include"Enemy.h"
 
 
 class Character
@@ -21,6 +21,7 @@ public:
 	//Accessors
 	inline const double& getX() const { return this->xPos; }
 	inline const double& getY() const { return this->yPos; }
+	inline const int& getDistanceTravelled() const { return this->destanceTravelled; }
 	inline const std::string& getName() const { return this->name; } // inline to optimize data managment, const as this will not change.
 	inline const int& getLevel() const { return this->level; }
 	inline const int& getExp() const { return this->exp; }
@@ -31,16 +32,23 @@ public:
 	inline const int& getDamageMin() const { return this->damageMin; }
 	inline const int& getDamageMax() const { return this->damageMax; }
 	inline const int& getDefence() const { return this->defence; }
+	inline const int& getAccuracy() const { return this->accuracy; }
 	
 	//Modifiers
+	inline void setDistanceTravelled(const int& distance) { this->destanceTravelled = distance; }
+	inline void travel() { this->destanceTravelled++; }
+	inline void gainExp(const int& exp) { this->exp += exp; this->levelUp(); }
 
 private:
 	double xPos;
 	double yPos;
+	int destanceTravelled;
 
 	Inventory inventory;
 	Weapon weapon;
-	Armor armor;
+	Armor armor_head;
+	Armor armor_chest;
+	int gold;
 
 	std::string name;
 	int level;
@@ -59,6 +67,7 @@ private:
 	int damageMin;
 	int damageMax;
 	int defence;
+	int accuracy;
 	int luck;
 
 	int statPoints;

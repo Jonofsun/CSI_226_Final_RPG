@@ -5,7 +5,7 @@ Inventory::Inventory()
 	this->cap = 5;
 	this->numOfItems = 0;
 	this->itemArr = new Item*[cap];
-	this->initialize();
+	this->initialize(); // you cannot delete null pointer without a crash
 }
 
 Inventory::~Inventory()
@@ -16,6 +16,26 @@ Inventory::~Inventory()
 
 	}
 	delete[] itemArr;
+}
+
+Inventory::Inventory(const Inventory& obj) // copy contructer, only called once / shallow copy
+{
+	this->cap = obj.cap;
+	this->numOfItems = obj.numOfItems;
+	this->itemArr = new Item * [this->cap];
+
+	for (size_t i = 0; i < this->numOfItems; i++)
+	{
+		this->itemArr[i] = obj.itemArr[i]->clone();
+	}
+	initialize(this->numOfItems);
+}
+
+Item& Inventory::operator[](const int index) // operator is a GET function; overloading index operator
+{
+	if (index < 0 || index >= this->numOfItems) throw("Bad Index"); // within scope of array
+
+	return *this->itemArr[index]; // de-reference to not return the point but return the object
 }
 
 void Inventory::expand() // Expanding a pointer pointer ** array 
@@ -39,7 +59,7 @@ void Inventory::initialize(const int from)
 {
 	for (size_t i = from; i < cap; i++)
 	{
-		this->itemArr[i] = nullptr;
+		this->itemArr[i] = nullptr; // runs through the lenth of the array and fills empty with null pointers
 	}
 }
 void Inventory::addItem(const Item& item)

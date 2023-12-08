@@ -5,6 +5,7 @@
 #include<fstream> // file input - output operations
 #include"Functions.h"
 #include"Character.h"
+#include"Event.h"
 
 
 
@@ -22,6 +23,7 @@ public:
 	void createNewCharacter();
 	void saveCharacter();
 	void loadCharacter();
+	void Travel();
 
 	//Accessors
 	inline bool getPlaying() const { return this->playing; }
